@@ -3,7 +3,9 @@ import './guess-form.css';
 
 export default function GuessForm() {
     return (
-        <div>
-        </div>
+        <form>
+            <input type="text" />
+            <input type="submit" value="Guess"/>
+        </form>
     );
 }
