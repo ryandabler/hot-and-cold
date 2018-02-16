@@ -14,11 +14,14 @@ export default class Game extends React.Component {
     }
 
     addGuess(guess) {
-        const history = [...this.state.history, guess];
-        this.setState({
-            history
-        });
-        console.log(guess);
+        if (this.state.history.includes(guess)) {
+
+        } else {
+            const history = [...this.state.history, guess];
+            this.setState({
+                history
+            });
+        }
     }
 
     render() {
