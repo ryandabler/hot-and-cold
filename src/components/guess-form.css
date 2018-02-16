@@ -1,0 +1,34 @@
+.guess-form {
+    margin-bottom: 10px;
+}
+
+.guess-form > input {
+    display: block;
+    width: 100%;
+    color: #F7F0F5;
+    background-color: #8F857D;
+    border: 1px solid #F7F0F5;
+}
+
+.guess-form > input:not(:last-child) {
+    margin-bottom: 5px;
+}
+
+input {
+    padding: 5px;
+    font-size: 20px;
+}
+
+input:focus {
+    outline: none;
+}
+
+input[type=submit] {
+    transition: background-color 0.25s, color 0.25s, border-color 0.25s;
+}
+
+input[type=submit]:hover {
+    background-color: #F7F0F5;
+    border-color: #8F857D;
+    color: #8F857D;
+}

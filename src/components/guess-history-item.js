@@ -3,6 +3,6 @@ import './guess-history-item.css';
 
 export default function GuessHistoryItem(props) {
     return (
-        <span>{props.guess}</span>
+        <span className="history-item">{props.guess}</span>
     );
 }

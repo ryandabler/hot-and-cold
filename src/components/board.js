@@ -6,9 +6,9 @@ import './board.css';
 
 export default function Board() {
     return (
-        <div>
+        <div className="board">
             <Header />
-            <Game />
+            <Game displayText={"Make a guess"} />
         </div>
     );
 }

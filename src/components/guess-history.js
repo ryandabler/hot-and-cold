@@ -6,7 +6,7 @@ export default function GuessHistory(props) {
     const items = props.history.map(item => <GuessHistoryItem key={item} guess={item} />);
     
     return (
-        <div>
+        <div className="guess-history">
             {items}
         </div>
     );

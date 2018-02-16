@@ -15,7 +15,7 @@ export default class GuessForm extends React.Component {
 
     render() {
         return (
-            <form onSubmit={event => this.onSubmit(event)}>
+            <form className="guess-form" onSubmit={event => this.onSubmit(event)}>
                 <input ref={input => this.textInput = input} type="text" />
                 <input type="submit" value="Guess" />
             </form>

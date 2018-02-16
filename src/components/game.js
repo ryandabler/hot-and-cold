@@ -26,9 +26,10 @@ export default class Game extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="game">
+                <p className="top-text">{this.props.displayText}</p>
                 <GuessForm onSubmit={guess => this.addGuess(guess)} />
-                <div>Guesses: {this.state.history.length}</div>
+                <p>Guesses: {this.state.history.length}</p>
                 <GuessHistory history={this.state.history}/>
             </div>
         );
