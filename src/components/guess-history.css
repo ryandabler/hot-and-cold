@@ -2,4 +2,30 @@
     min-height: 100px;
     background-color: #8F857D;
     border-radius: 5px;
+    padding: 10px 10px 5px 10px;
+    overflow: hidden;
+}
+
+.guess-history > .history-item:not(:last-child) {
+    margin-right: 5px;
+}
+
+.history-item {
+    margin-bottom: 5px;
+}
+
+.cold {
+    background-color: #7F3633;
+}
+
+.cool {
+    background-color: #673633;
+}
+
+.warm {
+    background-color: #435633;
+}
+
+.hot {
+    background-color: #436833;
 }

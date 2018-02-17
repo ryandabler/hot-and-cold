@@ -1,6 +1,7 @@
 .history-item {
     display: block;
-    /* background-color:  */
     float: left;
-
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
 }
