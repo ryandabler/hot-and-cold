@@ -4,4 +4,29 @@
     padding: 5px;
     border-radius: 5px;
     text-align: center;
+    margin-bottom: 5px;
+}
+
+.history-item:not(:last-of-type) {
+    margin-right: 5px;
+}
+
+.cold {
+    background-color: #673633;
+}
+
+.cool {
+    background-color: #7F3633;
+}
+
+.warm {
+    background-color: #435633;
+}
+
+.hot {
+    background-color: #436833;
+}
+
+.won { 
+    background-color: #B98E14;
 }
