@@ -32,3 +32,9 @@ input[type=submit]:hover {
     border-color: #8F857D;
     color: #8F857D;
 }
+
+input:disabled:hover {
+    color: #F7F0F5;
+    background-color: #8F857D;
+    border: 1px solid #F7F0F5;
+}
