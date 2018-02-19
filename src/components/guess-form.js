@@ -9,15 +9,20 @@ export default class GuessForm extends React.Component {
 
     onSubmit(event) {
         event.preventDefault();
-        this.props.onSubmit(this.textInput.value);
-        this.textInput.value = "";
+        
+        const value = event.target.guess.value;
+        event.target.guess.value = "";
+
+        const response = { value };
+        response.status = value.match(/[^0-9]/) ? "invalid" : "valid";
+        
+        this.props.onSubmit(response);
     }
 
     render() {
         return (
             <form className="guess-form" onSubmit={event => this.onSubmit(event)}>
-                <input ref={input => this.textInput = input}
-                       type="text" aria-label="Enter a number" />
+                <input name="guess" type="text" aria-label="Enter a number" />
                 <input type="submit" value="Guess" />
             </form>
         );

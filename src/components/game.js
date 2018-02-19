@@ -9,17 +9,38 @@ export default class Game extends React.Component {
         super(props);
         this.state = {
             history: [],
-            answer: 25
+            answer: 25,
+            displayText: props.displayText
+        }
+    }
+
+    checkValidity(response) {
+        response.status === "valid" ? this.addGuess(response.value)
+                                    : this.setState( { displayText: "Please only enter a number" } );
+    }
+
+    getHeat(guess) {
+        const diff = Math.abs(guess - this.state.answer);
+        if (diff < 10) {
+            return "Hot";
+        } else if (diff < 20) {
+            return "Warm";
+        } else if (diff < 30) {
+            return "Cool";
+        } else {
+            return "Cold";
         }
     }
 
     addGuess(guess) {
         if (this.state.history.includes(guess)) {
-
+            this.setState( { displayText: `You already guessed ${guess}` } );
         } else {
-            const history = [...this.state.history, guess];
+            const guessObj = { guess, heat: this.getHeat(guess) };
+            const history = [...this.state.history, guessObj];
             this.setState({
-                history
+                history,
+                displayText: guessObj.heat
             });
         }
     }
@@ -27,8 +48,8 @@ export default class Game extends React.Component {
     render() {
         return (
             <div className="game">
-                <p className="top-text">{this.props.displayText}</p>
-                <GuessForm onSubmit={guess => this.addGuess(guess)} />
+                <p className="top-text">{this.state.displayText}</p>
+                <GuessForm onSubmit={response => this.checkValidity(response)} />
                 <p>Guesses: {this.state.history.length}</p>
                 <GuessHistory history={this.state.history}/>
             </div>
