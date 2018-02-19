@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import './guess-form.css';
 
 export default function GuessForm(props) {
@@ -21,4 +22,9 @@ export default function GuessForm(props) {
             <input type="submit" value="Guess" disabled={props.disableInput} />
         </form>
     );
+}
+
+GuessForm.propTypes = {
+    disableInput: PropTypes.bool.isRequired,
+    onSubmit: PropTypes.func.isRequired
 }

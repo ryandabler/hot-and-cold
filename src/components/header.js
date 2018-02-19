@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from "prop-types";
+
 import './header.css';
 
 export default function Header(props) {
@@ -9,3 +11,7 @@ export default function Header(props) {
         </div>
     );
 }
+
+Header.propTypes = {
+    onRestart: PropTypes.func.isRequired
+};

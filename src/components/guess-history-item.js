@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import './guess-history-item.css';
 
 export default function GuessHistoryItem(props) {
@@ -6,4 +7,9 @@ export default function GuessHistoryItem(props) {
     return (
         <span className={classes}>{props.guess}</span>
     );
+}
+
+GuessHistoryItem.propTypes = {
+    heat: PropTypes.string.isRequired,
+    guess: PropTypes.string.isRequired
 }
