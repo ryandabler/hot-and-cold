@@ -1,13 +1,8 @@
 import React from 'react';
 import './guess-form.css';
 
-export default class GuessForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-
-    onSubmit(event) {
+export default function GuessForm(props) {
+    function onSubmit(event) {
         event.preventDefault();
         
         const value = event.target.guess.value;
@@ -16,16 +11,14 @@ export default class GuessForm extends React.Component {
         const response = { value };
         response.status = value.match(/[^0-9]/) ? "invalid" : "valid";
         
-        this.props.onSubmit(response);
+        props.onSubmit(response);
     }
 
-    render() {
-        return (
-            <form className="guess-form" onSubmit={event => this.onSubmit(event)}>
-                <input name="guess" type="text"
-                       aria-label="Enter a number" disabled={this.props.disableInput} />
-                <input type="submit" value="Guess" disabled={this.props.disableInput} />
-            </form>
-        );
-    }
+    return (
+        <form className="guess-form" onSubmit={event => onSubmit(event)}>
+            <input name="guess" type="text"
+                    aria-label="Enter a number" disabled={props.disableInput} />
+            <input type="submit" value="Guess" disabled={props.disableInput} />
+        </form>
+    );
 }
