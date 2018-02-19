@@ -61,7 +61,7 @@ export default class Board extends React.Component {
     render() {
         return (
             <div className="board">
-                <Header onRestart={initRestart => this.restartGame()} />
+                <Header onRestart={() => this.restartGame()} />
                 <section className="game">
                     <p className="top-text">{this.state.displayText}</p>
                     <GuessForm onSubmit={response => this.checkValidity(response)}
