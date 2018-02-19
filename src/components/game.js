@@ -33,7 +33,7 @@ export default class Game extends React.Component {
     }
 
     addGuess(guess) {
-        if (this.state.history.includes(guess)) {
+        if (this.state.history.find(histObj => guess === histObj.guess)) {
             this.setState( { displayText: `You already guessed ${guess}` } );
         } else {
             const guessObj = { guess, heat: this.getHeat(guess) };
