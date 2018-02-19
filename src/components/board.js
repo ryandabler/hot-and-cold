@@ -49,10 +49,19 @@ export default class Board extends React.Component {
         }
     }
 
+    restartGame() {
+        this.setState({
+            history: [],
+            answer: Math.floor(Math.random() * 100) + 1,
+            displayText: "Make a guess",
+            won: false
+        });
+    }
+
     render() {
         return (
             <div className="board">
-                <Header />
+                <Header onRestart={initRestart => this.restartGame()} />
                 <section className="game">
                     <p className="top-text">{this.state.displayText}</p>
                     <GuessForm onSubmit={response => this.checkValidity(response)}
