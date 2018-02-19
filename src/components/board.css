@@ -5,3 +5,21 @@
     position: relative;
     padding: 15px 0;
 }
+
+.game {
+    width: 30%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.top-text {
+    font-size: 30px;
+    text-align: center;
+    margin: 15px 0;
+}
+
+p {
+    margin-bottom: 0;
+}
