@@ -56,7 +56,7 @@ export default class Board extends React.Component {
                 <div className="game">
                     <p className="top-text">{this.state.displayText}</p>
                     <GuessForm onSubmit={response => this.checkValidity(response)}
-                            disableInput={this.state.won} />
+                               disableInput={this.state.won} />
                     <p>Guesses: {this.state.history.length}</p>
                     <GuessHistory history={this.state.history}/>
                 </div>
