@@ -10,7 +10,8 @@ export default class Game extends React.Component {
         this.state = {
             history: [],
             answer: 25,
-            displayText: props.displayText
+            displayText: props.displayText,
+            won: false
         }
     }
 
@@ -21,7 +22,9 @@ export default class Game extends React.Component {
 
     getHeat(guess) {
         const diff = Math.abs(guess - this.state.answer);
-        if (diff < 10) {
+        if (diff === 0) {
+            return "Won";
+        } else if (diff < 10) {
             return "Hot";
         } else if (diff < 20) {
             return "Warm";
@@ -38,10 +41,10 @@ export default class Game extends React.Component {
         } else {
             const guessObj = { guess, heat: this.getHeat(guess) };
             const history = [...this.state.history, guessObj];
-            this.setState({
-                history,
-                displayText: guessObj.heat
-            });
+            const displayText = guessObj.heat !== "Won" ? guessObj.heat : "You won the game!";
+            const won = guessObj.heat === "Won" ? true : false;
+
+            this.setState( { history, displayText, won } );
         }
     }
 
@@ -49,7 +52,8 @@ export default class Game extends React.Component {
         return (
             <div className="game">
                 <p className="top-text">{this.state.displayText}</p>
-                <GuessForm onSubmit={response => this.checkValidity(response)} />
+                <GuessForm onSubmit={response => this.checkValidity(response)}
+                           disableInput={this.state.won} />
                 <p>Guesses: {this.state.history.length}</p>
                 <GuessHistory history={this.state.history}/>
             </div>

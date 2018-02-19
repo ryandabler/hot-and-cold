@@ -22,8 +22,9 @@ export default class GuessForm extends React.Component {
     render() {
         return (
             <form className="guess-form" onSubmit={event => this.onSubmit(event)}>
-                <input name="guess" type="text" aria-label="Enter a number" />
-                <input type="submit" value="Guess" />
+                <input name="guess" type="text"
+                       aria-label="Enter a number" disabled={this.props.disableInput} />
+                <input type="submit" value="Guess" disabled={this.props.disableInput} />
             </form>
         );
     }
