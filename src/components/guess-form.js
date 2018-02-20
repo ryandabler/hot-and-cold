@@ -6,8 +6,8 @@ export default function GuessForm(props) {
     function onSubmit(event) {
         event.preventDefault();
         
-        const value = event.target.guess.value;
-        event.target.guess.value = "";
+        const value = event.target.elements.guess.value;
+        event.target.elements.guess.value = "";
 
         const response = { value };
         response.status = value.match(/[^0-9]/) ? "invalid" : "valid";
