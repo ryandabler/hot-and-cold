@@ -9,10 +9,12 @@ export default function GuessForm(props) {
         const value = event.target.elements.guess.value.trim();
         event.target.elements.guess.value = "";
 
-        const response = { value };
-        response.status = value.match(/[^0-9]|^\s*$/) ? "invalid" : "valid";
-        
-        props.onSubmit(response);
+        if (value !== "") {
+            const response = { value };
+            response.status = value.match(/[^0-9]/) ? "invalid" : "valid";
+            
+            props.onSubmit(response);
+        }
     }
 
     return (
