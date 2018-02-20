@@ -6,7 +6,7 @@ export default function GuessForm(props) {
     function onSubmit(event) {
         event.preventDefault();
         
-        const value = event.target.elements.guess.value;
+        const value = event.target.elements.guess.value.trim();
         event.target.elements.guess.value = "";
 
         const response = { value };
