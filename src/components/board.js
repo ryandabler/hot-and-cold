@@ -1,75 +1,38 @@
 import React from 'react';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
 import Header from "./header";
 import GuessForm from "./guess-form";
 import GuessHistory from "./guess-history";
 
 import './board.css';
 
-export default class Board extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            history: [],
-            answer: Math.floor(Math.random() * 100) + 1,
-            displayText: "Make a guess",
-            won: false
-        }
-    }
-
-    checkValidity(response) {
-        response.status === "valid" ? this.addGuess(response.value)
-                                    : this.setState( { displayText: "Please only enter a number" } );
-    }
-
-    getHeat(guess) {
-        const diff = Math.abs(guess - this.state.answer);
-        if (diff === 0) {
-            return "Won";
-        } else if (diff < 10) {
-            return "Hot";
-        } else if (diff < 20) {
-            return "Warm";
-        } else if (diff < 30) {
-            return "Cool";
-        } else {
-            return "Cold";
-        }
-    }
-
-    addGuess(guess) {
-        if (this.state.history.find(histObj => guess === histObj.guess)) {
-            this.setState( { displayText: `You already guessed ${guess}` } );
-        } else {
-            const guessObj = { guess, heat: this.getHeat(guess) };
-            const history = [...this.state.history, guessObj];
-            const displayText = guessObj.heat !== "Won" ? guessObj.heat : "You won the game!";
-            const won = guessObj.heat === "Won" ? true : false;
-
-            this.setState( { history, displayText, won } );
-        }
-    }
-
-    restartGame() {
-        this.setState({
-            history: [],
-            answer: Math.floor(Math.random() * 100) + 1,
-            displayText: "Make a guess",
-            won: false
-        });
-    }
-
-    render() {
-        return (
-            <div className="board">
-                <Header onRestart={() => this.restartGame()} />
-                <section className="game">
-                    <p className="top-text">{this.state.displayText}</p>
-                    <GuessForm onSubmit={response => this.checkValidity(response)}
-                               disableInput={this.state.won} />
-                    <p>Guesses: {this.state.history.length}</p>
-                    <GuessHistory history={this.state.history}/>
-                </section>
-            </div>
-        );
-    }
+export function Board(props) {
+    return (
+        <div className="board">
+            <Header />
+            <section className="game">
+                <p className="top-text">{props.displayText}</p>
+                <GuessForm disableInput={props.won} />
+                <p>Guesses: {props.history.length}</p>
+                <GuessHistory history={props.history}/>
+            </section>
+        </div>
+    );
 }
+
+Board.propTypes = {
+    displayText: PropTypes.string.isRequired,
+    won: PropTypes.bool.isRequired,
+    history: PropTypes.array.isRequired
+}
+
+export const mapStateToProps = state => ({
+    history: state.history,
+    answer: state.answer,
+    displayText: state.displayText,
+    won: state.won
+});
+
+export default connect(mapStateToProps)(Board);

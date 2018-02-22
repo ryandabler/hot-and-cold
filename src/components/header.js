@@ -1,17 +1,21 @@
 import React from 'react';
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { restartGame } from "../action";
 
 import './header.css';
 
-export default function Header(props) {
+export function Header(props) {
     return (
         <div className="header">
             <span>Help</span>
-            <span onClick={() => props.onRestart()} className="restart">Restart</span>
+            <span onClick={() => props.dispatch(restartGame())} className="restart">Restart</span>
         </div>
     );
 }
 
 Header.propTypes = {
-    onRestart: PropTypes.func.isRequired
+    dispatch: PropTypes.func.isRequired
 };
+
+export default connect()(Header);

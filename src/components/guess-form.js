@@ -1,24 +1,17 @@
 import React from 'react';
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { addGuess } from "../action";
+
 import './guess-form.css';
 
-export default function GuessForm(props) {
-    function onSubmit(event) {
-        event.preventDefault();
-        
-        const value = event.target.elements.guess.value.trim();
-        event.target.elements.guess.value = "";
-
-        if (value !== "") {
-            const response = { value };
-            response.status = value.match(/[^0-9]/) ? "invalid" : "valid";
-            
-            props.onSubmit(response);
-        }
-    }
-
+export function GuessForm(props) {
     return (
-        <form className="guess-form" onSubmit={event => onSubmit(event)}>
+        <form className="guess-form"
+              onSubmit={e => { e.preventDefault();
+                               props.dispatch(addGuess(e.target.elements.guess.value.trim()));
+                               e.target.elements.guess.value = "";
+                             } }>
             <input name="guess" type="text"
                     aria-label="Enter a number" disabled={props.disableInput} />
             <input type="submit" value="Guess" disabled={props.disableInput} />
@@ -28,5 +21,7 @@ export default function GuessForm(props) {
 
 GuessForm.propTypes = {
     disableInput: PropTypes.bool.isRequired,
-    onSubmit: PropTypes.func.isRequired
+    dispatch: PropTypes.func.isRequired
 }
+
+export default connect()(GuessForm);
