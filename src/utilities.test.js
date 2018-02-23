@@ -46,10 +46,12 @@ describe("isValid", () => {
 
 describe("isAlreadyGuessed", () => {
     it("Should indicate duplicate values", () => {
-        const history = {
-            guess: "10",
-            heat: "Hot"
-        };
+        const history = [
+            {
+                guess: "10",
+                heat: "Hot"
+            }
+        ];
         const duplicate = isAlreadyGuessed("10", history);
         expect(duplicate).toEqual(true);
     });
