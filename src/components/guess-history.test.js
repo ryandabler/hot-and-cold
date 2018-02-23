@@ -9,7 +9,7 @@ describe("<GuessHistory />", () => {
         shallow(<GuessHistory history={history} />);
     });
 
-    it("Should have 3 history items - warm, cold, hot", () => {
+    it("Should have 3 history items", () => {
         const history = [ 
             { guess: "3", heat: "Cold" },
             { guess: "25", heat: "Warm" },
