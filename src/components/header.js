@@ -14,6 +14,10 @@ export function Header(props) {
     );
 }
 
+Header.defaultProps = {
+    dispatch: () => {}
+};
+
 Header.propTypes = {
     dispatch: PropTypes.func.isRequired
 };

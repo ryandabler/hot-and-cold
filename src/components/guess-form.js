@@ -19,9 +19,14 @@ export function GuessForm(props) {
     );
 }
 
+GuessForm.defaultProps = {
+    dispatch: () => {},
+    disableInput: false
+};
+
 GuessForm.propTypes = {
     disableInput: PropTypes.bool.isRequired,
     dispatch: PropTypes.func.isRequired
-}
+};
 
 export default connect()(GuessForm);

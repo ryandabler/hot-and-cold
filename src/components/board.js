@@ -22,11 +22,17 @@ export function Board(props) {
     );
 }
 
+Board.defaultProps = {
+    displayText: "Make a guess",
+    won: false,
+    history: []
+};
+
 Board.propTypes = {
     displayText: PropTypes.string.isRequired,
     won: PropTypes.bool.isRequired,
     history: PropTypes.array.isRequired
-}
+};
 
 export const mapStateToProps = state => ({
     history: state.history,
